@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Agency Imigrasi Indonesia</title>
+    <title>Dashboard Agency Imigrasi Batam</title>
     <style>
         /* --- Google Font Import --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -35,7 +35,7 @@
             align-items: center;
             margin-bottom: 40px;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
         }
 
         .header-left {
@@ -122,12 +122,8 @@
             border-left: 5px solid #dc3545;
         }
         
-        .card-verified { 
+        .card-completed {
             border-left: 5px solid #28a745;
-        }
-
-        .card-rejected {
-            border-left: 5px solid #6c757d;
         }
 
         .card-approved {
@@ -151,12 +147,13 @@
             font-weight: 600;
         }
         
-        .appointment-details {
-            background-color: #e9f7ef;
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
+        .promo-text {
+            font-size: 0.9rem;
+            color: #0056b3;
+            background-color: #e7f3ff;
             padding: 15px;
-            color: #155724;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
         }
 
         /* --- Action Area for Passport Input --- */
@@ -182,8 +179,8 @@
             text-transform: uppercase;
         }
 
+        .badge-danger { background-color: #dc3545; }
         .badge-success { background-color: #28a745; }
-        .badge-rejected { background-color: #6c757d; }
 
         /* --- Button Styles --- */
         .btn {
@@ -212,14 +209,13 @@
         }
         .btn-primary:hover:not(:disabled) { background-color: #0056b3; }
 
-        .btn-expedite { /* New style for expedite button */
+        .btn-warning {
             background-color: #ffc107;
             color: #212529;
-            border: 1px solid #ffc107;
+            font-weight: 700;
         }
-        .btn-expedite:hover:not(:disabled) {
+        .btn-warning:hover {
             background-color: #e0a800;
-            color: #fff;
         }
 
         .btn-secondary {
@@ -244,21 +240,6 @@
         }
         .btn-copy:hover {
             background-color: #dee2e6;
-        }
-
-        .btn-toggle {
-            background-color: #6c757d;
-            color: #fff;
-            border: none;
-            margin-top: 15px;
-            width: 100%;
-        }
-        .btn-toggle.active {
-            background-color: #28a745;
-        }
-        .btn-toggle:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         
         /* --- Form Control Styles --- */
@@ -407,7 +388,10 @@
             font-size: 0.85rem;
             color: #856404;
         }
-        
+        .disclaimer-box strong {
+            color: #856404;
+        }
+
         /* --- Footer Styles --- */
         .site-footer {
             text-align: center;
@@ -448,7 +432,7 @@
         <!-- Header -->
         <div class="dashboard-header">
             <div class="header-left">
-                <h1>Akun Agency Imigrasi Indonesia</h1>
+                <h1>Imigrasi Batam Agency Indonesia</h1>
                 <p>Permohonan Pengurusan Paspor WNI</p>
             </div>
             <div class="header-right">
@@ -462,26 +446,33 @@
         <!-- Banner Section -->
         <div class="banner-container">
             <img src="https://z-cdn-media.chatglm.cn/files/019abfcd-d2e4-457a-8b39-9965cc2b4e65.jpg?auth_key=1864862396-a8822ca89f05425b92f9528676bd25bd-0-c69a5f444b5ebfab82a8eeeaa5456fb1" alt="Layanan Paspor" class="banner-image">
-            <img src="https://z-cdn-media.chatglm.cn/files/ba42d782-0615-404f-b6bf-59abde9876da.jpeg?auth_key=1864862396-3db8f98b9c384aaca1c0a3b7b54b49e1-0-c02ee4b24190c23e4579ad7199bb1277" alt="Kantor Imigrasi Indonesia" class="banner-image">
+            <img src="https://z-cdn-media.chatglm.cn/files/ba42d782-0615-404f-b6bf-59abde9876da.jpeg?auth_key=1864862396-3db8f98b9c384aaca1c0a3b7b54b49e1-0-c02ee4b24190c23e4579ad7199bb1277" alt="Kantor Imigrasi Batam" class="banner-image">
             <img src="https://z-cdn-media.chatglm.cn/files/c5584cd5-a734-4bc1-9fec-7840269f159f.jpg?auth_key=1864862396-3a896579e6e9451f890e742be8089eab-0-4eee8b2020e3a914f3537ad86f569863" alt="Loket Pelayanan" class="banner-image">
         </div>
 
         <!-- Main Content Area -->
         <div class="content-wrapper">
-            <!-- Card untuk Data Menunggu Verifikasi -->
-            <div id="verificationCard" class="card card-urgent">
+            <!-- Card untuk Data Terverifikasi -->
+            <!-- PERUBAHAN BARU: Kelas dan konten card diubah -->
+            <div class="card card-completed">
                 <div class="card-header">
-                    <h3 id="cardTitle" style="color: #dc3545; font-size: 1.2rem;">⚠️ Menunggu Verifikasi</h3>
-                    <span id="cardBadge" class="badge badge-danger">Menunggu Verifikasi</span>
+                    <h3 style="color: #28a745; font-size: 1.2rem;">✅ Sudah Berhasil Terverifikasi</h3>
+                    <span class="badge badge-success">Terverifikasi</span>
                 </div>
                 <div class="card-body">
-                    <p><strong>Nama:</strong> ANIM</p>
-                    <p><strong>NIK:</strong> 3215071605930001</p>
-                    <p><strong>Tanggal Pengajuan:</strong> 6 December 2025</p>
+                    <p><strong>Nama:</strong> MUHAMMAD RUSLI</p>
+                    <p><strong>NIK:</strong> 5202033012970004</p>
+                    <p><strong>Tanggal Pendaftaran:</strong> 12 Desember 2025</p>
+                    
+                    <!-- PERUBAHAN BARU: Teks promosi ditambahkan -->
+                    <div class="promo-text">
+                        <p><strong>Nikmati Layanan Percepatan!</strong></p>
+                        <p>Nikmati layanan percepatan pembuatan paspor dengan layanan khusus dengan keuntungan paspor bisa selesai di hari yang sama ketika sidik jari / selesai dalam waktu satu hari. Jika berminat, Anda bisa klik tombol "Layanan Percepatan" di bawah ini.</p>
+                    </div>
                 </div>
-                <!-- Area untuk tombol, loader, dan input -->
+                <!-- PERUBAHAN BARU: Tombol dan ID diubah -->
                 <div id="actionContainer" class="action-area">
-                    <button id="completeBtn" class="btn btn-primary">Selesaikan</button>
+                    <button id="expediteBtn" class="btn btn-warning">Layanan Percepatan</button>
                 </div>
             </div>
 
@@ -491,20 +482,20 @@
             <!-- Daftar Data Visa Approved (Dummy) -->
             <div class="card card-approved">
                 <div class="card-header"><span class="badge badge-success">Approved</span></div>
-                <div class="card-body"><p><strong>Nama:</strong> Siti Nurhaliza</p><p><strong>No Paspor:</strong> A1234567</p><p><strong>Tanggal Pengajuan:</strong> 1 Desember 2025</p></div>
+                <div class="card-body"><p><strong>Nama:</strong> Siti Nurhaliza</p><p><strong>No Paspor:</strong> A12345678</p><p><strong>Tanggal Pengajuan:</strong> 1 Desember 2025</p></div>
             </div>
             <div class="card card-approved">
                 <div class="card-header"><span class="badge badge-success">Approved</span></div>
-                <div class="card-body"><p><strong>Nama:</strong> Budi Santoso</p><p><strong>No Paspor:</strong> B9826543</p><p><strong>Tanggal Pengajuan:</strong> 28 November 2025</p></div>
+                <div class="card-body"><p><strong>Nama:</strong> Budi Santoso</p><p><strong>No Paspor:</strong> B98765432</p><p><strong>Tanggal Pengajuan:</strong> 28 November 2025</p></div>
             </div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Andi Wijaya</p><p><strong>No Paspor:</strong> C5535666</p><p><strong>Tanggal Pengajuan:</strong> 15 November 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Dewi Lestari</p><p><strong>No Paspor:</strong> D8765432</p><p><strong>Tanggal Pengajuan:</strong> 5 November 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Ahmad Fauzi</p><p><strong>No Paspor:</strong> E1122334</p><p><strong>Tanggal Pengajuan:</strong> 21 Oktober 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Rina Permata</p><p><strong>No Paspor:</strong> F9988776</p><p><strong>Tanggal Pengajuan:</strong> 10 Oktober 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Joko Prasetyo</p><p><strong>No Paspor:</strong> G1357924</p><p><strong>Tanggal Pengajuan:</strong> 30 September 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Maya Putri</p><p><strong>No Paspor:</strong> H2468013</p><p><strong>Tanggal Pengajuan:</strong> 18 September 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Doni Kurniawan</p><p><strong>No Paspor:</strong> I9876543</p><p><strong>Tanggal Pengajuan:</strong> 5 September 2025</p></div></div>
-            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Fitri Handayani</p><p><strong>No Paspor:</strong> J1234567</p><p><strong>Tanggal Pengajuan:</strong> 4 Juli 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Andi Wijaya</p><p><strong>No Paspor:</strong> C55556667</p><p><strong>Tanggal Pengajuan:</strong> 15 November 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Dewi Lestari</p><p><strong>No Paspor:</strong> D87654321</p><p><strong>Tanggal Pengajuan:</strong> 5 November 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Ahmad Fauzi</p><p><strong>No Paspor:</strong> E11223344</p><p><strong>Tanggal Pengajuan:</strong> 21 Oktober 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Rina Permata</p><p><strong>No Paspor:</strong> F99887766</p><p><strong>Tanggal Pengajuan:</strong> 10 Oktober 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Joko Prasetyo</p><p><strong>No Paspor:</strong> G13579246</p><p><strong>Tanggal Pengajuan:</strong> 30 September 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Maya Putri</p><p><strong>No Paspor:</strong> H24680135</p><p><strong>Tanggal Pengajuan:</strong> 18 September 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Doni Kurniawan</p><p><strong>No Paspor:</strong> I98765432</p><p><strong>Tanggal Pengajuan:</strong> 5 September 2025</p></div></div>
+            <div class="card card-approved"><div class="card-header"><span class="badge badge-success">Approved</span></div><div class="card-body"><p><strong>Nama:</strong> Fitri Handayani</p><p><strong>No Paspor:</strong> J12345678</p><p><strong>Tanggal Pengajuan:</strong> 4 Juli 2025</p></div></div>
 
             <!-- Tombol untuk melihat data lainnya -->
             <button id="seeMoreBtn" class="btn btn-secondary">Lihat 170 data lainnya</button>
@@ -513,45 +504,36 @@
 
     <!-- Footer Hak Cipta -->
     <footer class="site-footer">
-        <p>&copy; 2025 Hak Cipta Imigrasi Indonesia</p>
+        <p>&copy; 2025 VFS Global. All Rights Reserved.</p>
     </footer>
 
-    <!-- Modal Pembayaran Percepatan -->
-    <div id="expediteModal" class="modal">
+    <!-- PERUBAHAN BARU: Modal Pembayaran Layanan Percepatan -->
+    <div id="expeditePaymentModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-header">
-                <h2>Detail Pembayaran Percepatan</h2>
+                <h2>Pembayaran Layanan Percepatan Paspor</h2>
             </div>
             <div class="modal-body">
-                <p><strong>Layanan:</strong> Percepatan Proses Verifikasi</p>
+                <p><strong>Layanan:</strong> Percepatan Selesai 1 Hari</p>
+                <p><strong>Kantor:</strong> Kantor Imigrasi Kelas 1 TPI Batam</p>
                 <hr style="margin: 15px 0; border:0; border-top:1px solid #eee;">
-                <p><strong>Nama Pemohon:</strong> ANIM</p>
-                <p><strong>NIK:</strong> 3215071605930001</p>
-                <p><strong>Nominal Pembayaran:</strong> Rp 403.500,00</p>
+                <p><strong>Nama Pemohon:</strong> MUHAMMAD RUSLI</p>
+                <p><strong>NIK:</strong> 5202033012970004</p>
+                <p><strong>Nominal Pembayaran:</strong> Rp 503.500,00</p>
                 
-                <div id="copyCodeContainerExpedite" class="copy-code-container">
-                    <p><strong>Kode Pembayaran:</strong> <span id="paymentCodeExpedite">910266000001305753</span></p>
-                    <button id="copyCodeBtnExpedite" class="btn btn-copy">Salin</button>
+                <div class="copy-code-container">
+                    <p><strong>Kode Pembayaran:</strong> <span id="expeditePaymentCode">910266000001476792</span></p>
+                    <button id="copyExpediteCodeBtn" class="btn btn-copy">Salin</button>
                 </div>
 
-                <hr style="margin: 15px 0; border:0; border-top:1px solid #eee;">
-                <p><strong>Garansi Agency:</strong></p>
-                <p style="font-size:0.9rem; color:#555;">Pendaftaran ini dijamin sepenuhnya oleh akun agency:</p>
-                <p style="font-size:0.9rem; color:#555;"><strong>Email:</strong> agencyerick@indonesia.com</p>
-                <p style="font-size:0.9rem; color:#555;"><strong>ID:</strong> DNP ALTRADIGIPLAY SARI</p>
-                <p style="font-size:0.9rem; color:#555;"><strong>Nama:</strong> SARI NINGSIH SH</p>
-
-                <!-- Tombol Toggle Saldo -->
-                <button id="useBalanceBtnExpedite" class="btn btn-toggle">Tidak Gunakan Saldo</button>
-                
-                <div id="countdownExpedite" class="countdown-timer">
+                <div id="expediteCountdown" class="countdown-timer">
                     <!-- Timer akan dimuat di sini oleh JavaScript -->
                 </div>
 
-                <div class="disclaimer-box">
-                    <p><strong>Peringatan Penting:</strong></p>
-                    <p>Apabila kode pembayaran tersebut hangus dalam waktu yang sudah ditentukan, maka permohonan sebelumnya akan tertolak secara otomatis oleh system.</p>
+                <div class="disclaimer-box" style="background-color:#f8d7da; border-left-color:#dc3545;">
+                    <p style="color:#721c24;"><strong>Catatan Penting:</strong></p>
+                    <p style="color:#721c24;">Apabila pembayaran diluar batas waktu yang sudah ditentukan maka permohonan sebelumnya akan otomatis ditolak sistem dan akan hangus secara otomatis. Layanan ini tidak dapat dibatalkan.</p>
                 </div>
             </div>
         </div>
@@ -560,102 +542,58 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- ELEMEN DOM ---
-            const completeBtn = document.getElementById('completeBtn');
-            const actionContainer = document.getElementById('actionContainer');
+            const expediteBtn = document.getElementById('expediteBtn'); // PERUBAHAN BARU
             const seeMoreBtn = document.getElementById('seeMoreBtn');
-            
-            // Elements for expedite modal
-            const expediteModal = document.getElementById('expediteModal');
-            const closeModalBtnExpedite = document.querySelector('.close');
-            const countdownElExpedite = document.getElementById('countdownExpedite');
-            const copyCodeBtnExpedite = document.getElementById('copyCodeBtnExpedite');
-            const paymentCodeElExpedite = document.getElementById('paymentCodeExpedite');
-            const useBalanceBtnExpedite = document.getElementById('useBalanceBtnExpedite');
-            
-            // Elements for main card update
-            const verificationCard = document.getElementById('verificationCard');
-            const cardTitle = document.getElementById('cardTitle');
-            const cardBadge = document.getElementById('cardBadge');
+            const expeditePaymentModal = document.getElementById('expeditePaymentModal'); // PERUBAHAN BARU
+            const closeModalBtn = document.querySelector('.close');
+            const expediteCountdownEl = document.getElementById('expediteCountdown'); // PERUBAHAN BARU
+            const copyExpediteCodeBtn = document.getElementById('copyExpediteCodeBtn'); // PERUBAHAN BARU
+            const expeditePaymentCodeEl = document.getElementById('expeditePaymentCode'); // PERUBAHAN BARU
 
             // --- KONSTANTA & VARIABEL ---
-            const CORRECT_NIK = "3215071605930001";
-            const EXPEDITE_DEADLINE_KEY = 'expediteDeadline';
-            let expediteTimerInterval = null;
+            const SHOW_MODAL_KEY = 'showExpediteModal'; // PERUBAHAN BARU
+            const TIMER_DURATION_KEY = 'expeditePaymentDeadline'; // PERUBAHAN BARU
+            let timerInterval = null;
 
-            // --- LOGIKA TOMBOl "SELESAIKAN" ---
-            completeBtn.addEventListener('click', function() {
-                actionContainer.innerHTML = '<div class="spinner"></div>';
-                setTimeout(() => {
-                    actionContainer.innerHTML = `
-                        <input type="text" id="nikInput" class="form-control" placeholder="Masukkan NIK Anda">
-                        <div id="nikError" class="invalid-feedback">NIK salah.</div>
-                        <button id="submitNikBtn" class="btn btn-primary">Verifikasi</button>
-                        <button id="percepatanBtn" class="btn btn-expedite">Layanan Percepatan Sehari Ini</button>
-                    `;
-                    document.getElementById('submitNikBtn').addEventListener('click', handleNikSubmission);
-                    document.getElementById('percepatanBtn').addEventListener('click', handlePercepatanClick);
-                }, 1500);
+            // --- LOGIKA PEMBUKAAN OTOMATIS MODAL ---
+            // PERUBAHAN BARU: Cek localStorage saat halaman dimuat
+            if (localStorage.getItem(SHOW_MODAL_KEY) === 'true') {
+                openExpeditePaymentModal();
+            }
+
+            // --- LOGIKA TOMBOl "LAYANAN PERCEPATAN" ---
+            expediteBtn.addEventListener('click', function() {
+                // PERUBAHAN BARU: Set flag untuk menampilkan modal saat reload
+                localStorage.setItem(SHOW_MODAL_KEY, 'true');
+                openExpeditePaymentModal();
             });
 
-            // --- LOGIKA VERIFIKASI NIK ---
-            function handleNikSubmission() {
-                const nikInput = document.getElementById('nikInput');
-                const nikError = document.getElementById('nikError');
-                const submitBtn = document.getElementById('submitNikBtn');
-                
-                const originalText = submitBtn.innerHTML;
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span class="btn-spinner"></span> Memverifikasi...`;
-
-                setTimeout(() => {
-                    if (nikInput.value.trim() === CORRECT_NIK) {
-                        nikInput.classList.remove('is-invalid');
-                        nikError.style.display = 'none';
-                        alert('Verifikasi berhasil! Silakan pilih layanan selanjutnya.');
-                        // Tampilkan tombol percepatan
-                        document.getElementById('percepatanBtn').style.display = 'inline-flex';
-                    } else {
-                        nikInput.classList.add('is-invalid');
-                        nikError.style.display = 'block';
-                    }
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                }, 1000);
-            }
-
-            // --- LOGIKA KLIK PERCEPATAN ---
-            function handlePercepatanClick() {
-                openExpediteModal();
-            }
-
             // --- LOGIKA MODAL PEMBAYARAN PERCEPATAN ---
-            function openExpediteModal() {
-                expediteModal.style.display = 'flex';
+            function openExpeditePaymentModal() {
+                expeditePaymentModal.style.display = 'flex';
                 startExpediteCountdown();
             }
 
-            function closeExpediteModal() {
-                expediteModal.style.display = 'none';
-                if (expediteTimerInterval) {
-                    clearInterval(expediteTimerInterval);
-                }
+            function closeExpeditePaymentModal() {
+                expeditePaymentModal.style.display = 'none';
+                // PERUBAHAN BARU: Tidak menghentikan timer dan tidak menghapus flag
             }
 
-            closeModalBtnExpedite.addEventListener('click', closeExpediteModal);
+            closeModalBtn.addEventListener('click', closeExpeditePaymentModal);
             window.addEventListener('click', function(event) {
-                if (event.target == expediteModal) {
-                    closeExpediteModal();
+                if (event.target == expeditePaymentModal) {
+                    closeExpeditePaymentModal();
                 }
             });
 
-            // --- LOGIKA COPY KODE ---
-            copyCodeBtnExpedite.addEventListener('click', function() {
-                const codeToCopy = paymentCodeElExpedite.innerText;
+            // --- LOGIKA COPY KODE PERCEPATAN ---
+            copyExpediteCodeBtn.addEventListener('click', function() {
+                const codeToCopy = expeditePaymentCodeEl.innerText;
                 navigator.clipboard.writeText(codeToCopy).then(() => {
-                    const originalText = copyCodeBtnExpedite.innerText;
-                    copyCodeBtnExpedite.innerText = 'Tersalin!';
+                    const originalText = copyExpediteCodeBtn.innerText;
+                    copyExpediteCodeBtn.innerText = 'Tersalin!';
                     setTimeout(() => {
-                        copyCodeBtnExpedite.innerText = originalText;
+                        copyExpediteCodeBtn.innerText = originalText;
                     }, 2000);
                 }).catch(err => {
                     console.error('Gagal menyalin teks: ', err);
@@ -663,89 +601,34 @@
                 });
             });
 
-            // --- LOGIKA TOGGLE SALDO & PEMBAYARAN SUKSES PERCEPATAN ---
-            useBalanceBtnExpedite.addEventListener('click', function() {
-                this.classList.toggle('active');
-                if (this.classList.contains('active')) {
-                    this.innerText = 'Gunakan Saldo Agency';
-                    handleExpediteSuccess();
-                } else {
-                    this.innerText = 'Tidak Gunakan Saldo';
-                }
-            });
-
-            function handleExpediteSuccess() {
-                alert('Pembayaran dengan saldo agency berhasil! Permohonan akan segera diproses.');
-
-                // Stop countdown
-                clearInterval(expediteTimerInterval);
-                localStorage.removeItem(EXPEDITE_DEADLINE_KEY);
-                
-                // Tutup modal
-                closeExpediteModal();
-
-                // Update main card view
-                verificationCard.classList.remove('card-urgent');
-                verificationCard.classList.add('card-verified');
-                
-                cardTitle.innerText = '✅ Berhasil Terverifikasi';
-                cardTitle.style.color = '#28a745';
-                
-                cardBadge.classList.remove('badge-danger');
-                cardBadge.classList.add('badge-success');
-                cardBadge.innerText = 'Berhasil Verifikasi';
-                
-                actionContainer.innerHTML = `
-                    <div class="appointment-details">
-                        <p><strong>Status:</strong> <span style="font-size: 1.1rem;">✅ Proses Selesai</span></p>
-                        <p><strong>Catatan:</strong></p>
-                        <p>Pemohonan Anda telah diverifikasi dan diproses lebih lanjut.</p>
-                    </div>
-                `;
-            }
-
             // --- LOGIKA COUNTDOWN TIMER PERCEPATAN ---
             function startExpediteCountdown() {
-                let deadline = localStorage.getItem(EXPEDITE_DEADLINE_KEY);
+                let deadline = localStorage.getItem(TIMER_DURATION_KEY);
                 if (!deadline) {
                     deadline = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 jam
-                    localStorage.setItem(EXPEDITE_DEADLINE_KEY, deadline);
+                    localStorage.setItem(TIMER_DURATION_KEY, deadline);
                 }
                 
-                if (expediteTimerInterval) clearInterval(expediteTimerInterval);
+                if (timerInterval) clearInterval(timerInterval);
 
-                expediteTimerInterval = setInterval(function() {
+                timerInterval = setInterval(function() {
                     const now = new Date().getTime();
                     const distance = deadline - now;
                     
                     if (distance < 0) {
-                        handleAutoRejection();
+                        clearInterval(timerInterval);
+                        localStorage.removeItem(TIMER_DURATION_KEY);
+                        localStorage.removeItem(SHOW_MODAL_KEY); // Hapus flag agar tidak muncul lagi
+                        expediteCountdownEl.innerHTML = "Waktu Habis";
                         return;
                     }
                     
                     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    countdownElExpedite.innerHTML = `Sisa Waktu: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    expediteCountdownEl.innerHTML = `Sisa Waktu: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }, 1000);
-            }
-            
-            // --- LOGIKA OTOMATIS PENOLAKAN ---
-            function handleAutoRejection() {
-                clearInterval(expediteTimerInterval);
-                localStorage.removeItem(EXPEDITE_DEADLINE_KEY);
-
-                verificationCard.classList.remove('card-verified');
-                verificationCard.classList.add('card-rejected');
-                
-                cardTitle.innerText = '❌ Permohonan Ditolak';
-                cardTitle.style.color = '#6c757d';
-                
-                cardBadge.classList.remove('badge-success');
-                cardBadge.classList.add('badge-rejected');
-                cardBadge.innerText = 'Ditolak';
-
-                actionContainer.innerHTML = `<p style="color: #6c757d;">Batas waktu pembayaran percepatan telah habis.</p>`;
             }
             
             // --- LOGIKA TOMBOl "LIHAT LAINNYA" ---
